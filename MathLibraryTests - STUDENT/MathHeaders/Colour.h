@@ -4,8 +4,13 @@ namespace MathClasses
 {
     struct Colour
     {
-        Colour() {
+        unsigned int colour;
 
+        Colour() {
+            SetRed(0);
+            SetGreen(0);
+            SetBlue(0);
+            SetAlpha(255);
         }
 
         Colour(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) {
@@ -15,7 +20,7 @@ namespace MathClasses
             SetAlpha(alpha);
         }
 
-        unsigned int colour;
+        
 
         unsigned char GetRed() const {
             return colour >> 24;
@@ -40,21 +45,21 @@ namespace MathClasses
         void SetGreen(unsigned char green) {
             unsigned int v = (unsigned int)green << 16;
 
-            colour = colour & 0x00ffffff;
+            colour = colour & 0xff00ffff;
 
             colour = colour | v;
         }
         void SetBlue(unsigned char blue) {
             unsigned int v = (unsigned int)blue << 8;
 
-            colour = colour & 0x00ffffff;
+            colour = colour & 0xffff00ff;
 
             colour = colour | v;
         }
         void SetAlpha(unsigned char alpha) {
             unsigned int v = (unsigned int)alpha << 0;
 
-            colour = colour & 0x00ffffff;
+            colour = colour & 0xffffff00;
 
             colour = colour | v;
         }
