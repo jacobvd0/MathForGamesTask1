@@ -115,5 +115,52 @@ namespace MathClasses
                 return false;
             return true;
         }
+
+        static Matrix3 MakeRotateX(float a) {
+            return Matrix3(1, 0, 0,
+                0, cosf(a), -sinf(a),
+                0, sinf(a), cosf(a));
+        }
+        static Matrix3 MakeRotateY(float a) {
+            return Matrix3(cosf(a), 0, -sinf(a),
+                0, 1, 0,
+                sinf(a), 0, cosf(a));
+        }
+        static Matrix3 MakeRotateZ(float a) {
+            return Matrix3(cosf(a), -sinf(a), 0,
+                sinf(a), cosf(a), 0,
+                0, 0, 1);
+        }
+
+        static Matrix3 MakeEuler(float pitch, float yaw, float roll) {
+            Matrix3 x = MakeRotateX(pitch);
+            Matrix3 y = MakeRotateY(yaw);
+            Matrix3 z = MakeRotateZ(roll);
+
+            return (z * y * x);
+        }
+
+        static Matrix3 MakeEuler(Vector3 vector) {
+            return MakeEuler(vector.x, vector.y, vector.z);
+        }
+
+        static Matrix3 MakeScale(float xScale, float yScale, float zScale) {
+            return Matrix3(xScale, 0.0f, 0.0f,
+                0.0f, yScale, 0.0f,
+                0.0f, 0.0f, zScale);
+        }
+
+        static Matrix3 MakeScale(float xScale, float yScale) {
+            return Matrix3(xScale, 0.0f, 0.0f,
+                0.0f, yScale, 0.0f,
+                0.0f, 0.0f, 1.0f);
+        }
+
+
+        static Matrix3 MakeScale(Vector3 scale) {
+            return MakeScale(scale.x, scale.y, scale.z);
+        }
+
+        static Matrix3 MakeTranslation()
 	};
 }
