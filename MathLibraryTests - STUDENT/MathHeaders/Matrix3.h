@@ -16,18 +16,6 @@ namespace MathClasses
             m7 = _m7;
             m8 = _m8;
             m9 = _m9;
-
-            // testing
-            v[0] = m1;
-            v[1] = m2;
-            v[2] = m3;
-            v[3] = m4;
-            v[4] = m5;
-            v[5] = m6;
-            v[6] = m7;
-            v[7] = m8;
-            v[8] = m9;
-
         }
 
         Matrix3(float floatarray[]) {
