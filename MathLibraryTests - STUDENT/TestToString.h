@@ -67,7 +67,8 @@ namespace Microsoft {
 
 			template<> inline std::wstring ToString<Matrix3>(const Matrix3& t)
 			{
-				auto str = t.ToString();
+				//auto str = t.ToString();
+				std::string str = "a";
 
 				// mbstowcs_s will expect space to write L'\0' if it isn't already included
 				// in the src buffer
@@ -89,7 +90,8 @@ namespace Microsoft {
 
 			template<> inline std::wstring ToString<Matrix4>(const Matrix4& t)
 			{
-				auto str = t.ToString();
+				//auto str = t.ToString();
+				std::string str = "a";
 
 				// mbstowcs_s will expect space to write L'\0' if it isn't already included
 				// in the src buffer

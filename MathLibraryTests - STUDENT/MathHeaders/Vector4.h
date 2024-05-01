@@ -6,23 +6,20 @@ namespace MathClasses
 {
     struct Vector4
     {
-        float w, x, y, z;
-
-
         Vector4() : w{ 0 }, x { 0 }, y{ 0 }, z{ 0 }
         {
         }
 
-        Vector4(float w, float x, float y, float z)
+        Vector4(float x, float y, float z, float w)
         {
-            this->w = w;
             this->x = x;
             this->y = y;
             this->z = z;
+            this->w = w;
         }
 
         union {
-            struct { float w, x, y, z; };
+            struct { float x, y, z, w; };
             //struct { float r, g, b; };
             float data[4];
         };
@@ -133,10 +130,24 @@ namespace MathClasses
         void Normalise() {
             float m = Magnitude();
 
-            w /= m;
-            x /= m;
-            y /= m;
-            z /= m;
+            if (m != 0) {
+                if (w != 0)
+                    w /= m;
+
+                if (x != 0)
+                    x /= m;
+
+                if (y != 0)
+                    y /= m;
+
+                if (z != 0)
+                    z /= m;
+            }
+            else {
+                w = x = y = z = 0;
+            }
+
+            
         }
 
         // Normalised
@@ -153,6 +164,11 @@ namespace MathClasses
         }
 
         Vector4 Vector4::Cross(const Vector4& other) {
+            /*return Vector4(y * other.z - z * other.y,
+                z * other.x - x * other.z,
+                x * other.y - y * other.x,
+                0);*/
+
             return Vector4(y * other.z - z * other.y,
                 z * other.x - x * other.z,
                 x * other.y - y * other.x,

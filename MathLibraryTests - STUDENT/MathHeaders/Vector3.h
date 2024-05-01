@@ -1,13 +1,12 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 namespace MathClasses
 {
     struct Vector3
     {
-        float x, y, z;
-
 
         Vector3() : x{ 0 }, y{ 0 }, z{ 0 }
         {
@@ -18,6 +17,10 @@ namespace MathClasses
             this->x = x;
             this->y = y;
             this->z = z;
+
+            //data[0] = x;
+            //data[1] = y;
+            //data[2] = z;
         }
 
         union {
@@ -125,10 +128,20 @@ namespace MathClasses
         // Normalise
         void Normalise() {
             float m = Magnitude();
+            if (m != 0) {
+                if (x != 0)
+                    x /= m;
 
-            x /= m;
-            y /= m;
-            z /= m;
+                if (y != 0)
+                    y /= m;
+
+                if (z != 0)
+                    z /= m;
+            }
+            else {
+                x = y = z = 0;
+            }
+            
         }
 
         // Normalised

@@ -58,5 +58,6 @@ namespace MathClasses
             return v[dim];
         }
 
+
 	};
 }
