@@ -146,17 +146,99 @@ namespace MathClasses
             );
         }
 
+        /*
+        [m1]  [m2]  [m3]  [m4]
+        [m5]  [m6]  [m7]  [m8]
+        [m9]  [m10] [m11] [m12]
+        [m13] [m14] [m15] [m16]
+        */
+
         bool operator ==(Matrix4 rhs) const {
-            if (m1 == rhs.m1 && m2 == rhs.m2 && m3 == rhs.m3 && m4 == rhs.m4 && m5 == rhs.m5 && m6 == rhs.m6 && m7 == rhs.m7 && m8 == rhs.m8 && m9 == rhs.m9 && m10 == rhs.m10 && m11 == rhs.m11 && rhs.m12 == m12 && rhs.m13 == m13 && rhs.m14 == m14 && rhs.m15 == m15 && rhs.m16 == m16)
+            Vector4 check1(m1, m5, m9, m13);
+            Vector4 check2(m2, m6, m10, m14);
+            Vector4 check3(m3, m7, m11, m15);
+            Vector4 check4(m4, m8, m12, m16);
+
+            if (check1 == Vector4(rhs.m1, rhs.m5, rhs.m9, rhs.m13) && check2 == Vector4(rhs.m2, rhs.m6, rhs.m10, m14) && check3 == Vector4(rhs.m3, rhs.m7, rhs.m11, rhs.m15) && check4 == Vector4(rhs.m4, rhs.m8, rhs.m12, rhs.m16))
                 return true;
             return false;
         }
 
         bool operator !=(Matrix4 rhs) const {
-            if (m1 == rhs.m1 && m2 == rhs.m2 && m3 == rhs.m3 && m4 == rhs.m4 && m5 == rhs.m5 && m6 == rhs.m6 && m7 == rhs.m7 && m8 == rhs.m8 && m9 == rhs.m9 && m10 == rhs.m10 && m11 == rhs.m11 && rhs.m12 == m12 && rhs.m13 == m13 && rhs.m14 == m14 && rhs.m15 == m15 && rhs.m16 == m16)
+            Vector4 check1(m1, m5, m9, m13);
+            Vector4 check2(m2, m6, m10, m14);
+            Vector4 check3(m3, m7, m11, m15);
+            Vector4 check4(m4, m8, m12, m16);
+
+            if (check1 == Vector4(rhs.m1, rhs.m5, rhs.m9, rhs.m13) && check2 == Vector4(rhs.m2, rhs.m6, rhs.m10, m14) && check3 == Vector4(rhs.m3, rhs.m7, rhs.m11, rhs.m15) && check4 == Vector4(rhs.m4, rhs.m8, rhs.m12, rhs.m16))
                 return false;
             return true;
         }
 
+        static Matrix4 MakeTranslation(float x, float y, float z) {
+            return Matrix4(1.0f, 0.0f, 0.0f, 0.0f,
+                            0.0f, 1.0f, 0.0f, 0.0f,
+                            0.0f, 0.0f, 1.0f, 0.0f,
+                            x, y, z, 1);
+        }
+
+        static Matrix4 MakeTranslation(Vector4 other) {
+            return MakeTranslation(other.x, other.y, other.z);
+        }
+
+        static Matrix4 MakeTranslation(Vector3 other) {
+            return MakeTranslation(other.x, other.y, other.z);
+        }
+
+        static Matrix4 MakeScale(float xScale, float yScale, float zScale) {
+            return Matrix4(xScale, 0.0f, 0.0f, 0.0f,
+                0.0f, yScale, 0.0f, 0.0f,
+                0.0f, 0.0f, zScale, 0.0f,
+                0.0f, 0.0f, 0.0f, 1);
+        }
+
+        static Matrix4 MakeScale(float xScale, float yScale) {
+            return Matrix4(xScale, 0.0f, 0.0f, 0.0f,
+                0.0f, yScale, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 1);
+        }
+
+        static Matrix4 MakeScale(Vector3 other) {
+            return MakeScale(other.x, other.y, other.z);
+        }
+
+        static Matrix4 MakeRotateX(float a) {
+            return Matrix4(1, 0, 0, 0,
+                0, cosf(a), -sinf(a), 0,
+                0, sinf(a), cosf(a), 0,
+                0, 0, 0, 1);
+        }
+
+        static Matrix4 MakeRotateY(float a) {
+            return Matrix4(cosf(a), 0, sinf(a), 0,
+                0, 1, 0, 0,
+                -sinf(a), 0, cosf(a), 0,
+                0, 0, 0, 1);
+        }
+
+        static Matrix4 MakeRotateZ(float a) {
+            return Matrix4(cosf(a), sinf(a), 0, 0,
+                -sinf(a), cosf(a), 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1);
+        }
+
+        static Matrix4 MakeEuler(float pitch, float yaw, float roll) {
+            Matrix4 x = MakeRotateX(pitch);
+            Matrix4 y = MakeRotateY(yaw);
+            Matrix4 z = MakeRotateZ(roll);
+
+            return (z * y * x);
+        }
+
+        static Matrix4 MakeEuler(Vector3 vector) {
+            return MakeEuler(vector.x, vector.y, vector.z);
+        }
 	};
 }
