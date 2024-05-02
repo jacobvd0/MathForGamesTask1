@@ -104,14 +104,28 @@ namespace MathClasses
             );
         }
 
+        /*
+        [m1][m2][m3]
+        [m4][m5][m6]
+        [m7][m8][m9]
+        */
+
         bool operator ==(Matrix3 rhs) const {
-            if (m1 == rhs.m1 && m2 == rhs.m2 && m3 == rhs.m3 && m4 == rhs.m4 && m5 == rhs.m5 && m6 == rhs.m6 && m7 == rhs.m7 && m8 == rhs.m8 && m9 == rhs.m9)
+            Vector3 check1(m1, m4, m7);
+            Vector3 check2(m2, m5, m8);
+            Vector3 check3(m3, m6, m9);
+
+            if (check1 == Vector3(rhs.m1, rhs.m4, rhs.m7) && check2 == Vector3(rhs.m2, rhs.m5, rhs.m8) && check3 == Vector3(rhs.m3, rhs.m6, rhs.m9))
                 return true;
             return false;
         }
 
         bool operator !=(Matrix3 rhs) const {
-            if (m1 == rhs.m1 && m2 == rhs.m2 && m3 == rhs.m3 && m4 == rhs.m4 && m5 == rhs.m5 && m6 == rhs.m6 && m7 == rhs.m7 && m8 == rhs.m8 && m9 == rhs.m9)
+            Vector3 check1(m1, m4, m7);
+            Vector3 check2(m2, m5, m8);
+            Vector3 check3(m3, m6, m9);
+
+            if (check1 == Vector3(rhs.m1, rhs.m4, rhs.m7) && check2 == Vector3(rhs.m2, rhs.m5, rhs.m8) && check3 == Vector3(rhs.m3, rhs.m6, rhs.m9))
                 return false;
             return true;
         }
@@ -122,13 +136,13 @@ namespace MathClasses
                 0, sinf(a), cosf(a));
         }
         static Matrix3 MakeRotateY(float a) {
-            return Matrix3(cosf(a), 0, -sinf(a),
+            return Matrix3(cosf(a), 0, sinf(a),
                 0, 1, 0,
-                sinf(a), 0, cosf(a));
+                -sinf(a), 0, cosf(a));
         }
         static Matrix3 MakeRotateZ(float a) {
-            return Matrix3(cosf(a), -sinf(a), 0,
-                sinf(a), cosf(a), 0,
+            return Matrix3(cosf(a), sinf(a), 0,
+                -sinf(a), cosf(a), 0,
                 0, 0, 1);
         }
 
@@ -161,6 +175,20 @@ namespace MathClasses
             return MakeScale(scale.x, scale.y, scale.z);
         }
 
-        static Matrix3 MakeTranslation()
+        /*
+        [m1][m2][m3]
+        [m4][m5][m6]
+        [m7][m8][m9]
+        */
+
+        static Matrix3 MakeTranslation(float x, float y, float z) {
+            return Matrix3(1.0f, 0.0f, 0.0f,
+                0.0f, 1.0f, 0.0f,
+                x, y, z);
+        }
+
+        static Matrix3 MakeTranslation(Vector3 other) {
+            return MakeTranslation(other.x, other.y, other.z);
+        }
 	};
 }
