@@ -95,5 +95,13 @@ namespace MathLibraryTests
 			auto alpha = actual.GetAlpha();
 			Assert::AreEqual(alpha, (Byte)255);
 		}
+
+		// Custom Test
+		TEST_METHOD(CustomMethod)
+		{
+			Colour actual(94, 0, 0, 0);
+			auto red = actual.GetRed();
+			Assert::AreEqual(red, (Byte)94);
+		}
 	};
 }
