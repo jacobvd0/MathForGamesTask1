@@ -100,8 +100,8 @@ namespace MathLibraryTests
 		TEST_METHOD(CustomMethod)
 		{
 			Colour actual(94, 0, 0, 0);
-			auto red = actual.GetRed();
-			Assert::AreEqual(red, (Byte)94);
+			auto red = actual.GetDecimal();
+			Assert::AreEqual(red, (unsigned int)1577058304);
 		}
 	};
 }

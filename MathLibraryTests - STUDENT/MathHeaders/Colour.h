@@ -34,6 +34,9 @@ namespace MathClasses
         unsigned char GetAlpha() const {
             return colour >> 0;
         }
+        unsigned int GetDecimal() const {
+            return colour;
+        }
 
         void SetRed(unsigned char red) {
             unsigned int v = (unsigned int)red << 24;
