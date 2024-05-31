@@ -190,10 +190,5 @@ namespace MathClasses
         static Matrix3 MakeTranslation(Vector3 other) {
             return MakeTranslation(other.x, other.y, other.z);
         }
-
-        static friend Vector3 operator*(const float lhs, const Vector3& rhs)
-        {
-            return rhs * lhs;
-        }
 	};
 }

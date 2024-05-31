@@ -162,6 +162,11 @@ namespace MathClasses
                 z * other.x - x * other.z,
                 x * other.y - y * other.x);
         }
+
+        static friend Vector3 operator*(const float lhs, const Vector3& rhs)
+        {
+            return rhs * lhs;
+        }
 	};
 
     
