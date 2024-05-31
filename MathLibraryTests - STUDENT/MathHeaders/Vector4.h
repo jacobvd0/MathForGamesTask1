@@ -174,6 +174,11 @@ namespace MathClasses
                 x * other.y - y * other.x,
                 0);
         }
+
+        static friend Vector4 operator*(const float lhs, const Vector4& rhs)
+        {
+            return rhs * lhs;
+        }
     };
 
 

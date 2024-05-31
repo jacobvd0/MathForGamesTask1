@@ -23,7 +23,7 @@ namespace MathLibraryTests
 
 		TEST_METHOD(SpecializedConstructor)
 		{
-			Vector3 vec(1.f, 2.f, 3.f);
+			Vector3 vec(1.f,2.f,3.f);
 			Assert::AreEqual(1.f, vec.x);
 			Assert::AreEqual(2.f, vec.y);
 			Assert::AreEqual(3.f, vec.z);
@@ -31,35 +31,35 @@ namespace MathLibraryTests
 
 		TEST_METHOD(Magnitude)
 		{
-			Vector3 v3a(13.5f, -48.23f, 862);
-			float mag3 = v3a.Magnitude();
-			Assert::AreEqual(863.453735352f, mag3, MAX_FLOAT_DELTA);
+				Vector3 v3a(13.5f, -48.23f, 862);
+				float mag3 = v3a.Magnitude();
+				Assert::AreEqual(863.453735352f, mag3, MAX_FLOAT_DELTA);
 
-			Vector3 v3b(0, 0, 0);
-			mag3 = v3b.Magnitude();
-			Assert::AreEqual(0.f, mag3, MAX_FLOAT_DELTA);
+				Vector3 v3b(0, 0, 0);
+				mag3 = v3b.Magnitude();
+				Assert::AreEqual(0.f, mag3, MAX_FLOAT_DELTA);
 		}
 
-		TEST_METHOD(Normalised)
-		{
-			Vector3 v3a(13.5f, -48.23f, 862);
-			Assert::AreEqual(Vector3(0.0156349f, -0.0558571f, 0.998316f), v3a.Normalised());
+        TEST_METHOD(Normalised)
+        {
+            Vector3 v3a(13.5f, -48.23f, 862);
+            Assert::AreEqual(Vector3(0.0156349f, -0.0558571f, 0.998316f), v3a.Normalised());
 
-			Vector3 v3b(0, 0, 0);
-			Assert::AreEqual(Vector3(0, 0, 0), v3b.Normalised());
-		}
+            Vector3 v3b(0, 0, 0);
+            Assert::AreEqual(Vector3(0, 0, 0), v3b.Normalised());
+        }
 
 		TEST_METHOD(Normalise)
 		{
 			Vector3 v3a(13.5f, -48.23f, 862);
 			v3a.Normalise();
 			Assert::AreEqual(Vector3(0.0156349f, -0.0558571f, 0.998316f), v3a);
-
+			
 			Vector3 v3b(0, 0, 0);
 			v3b.Normalise();
-			Assert::AreEqual(Vector3(0, 0, 0), v3b);
-		}
-
+			Assert::AreEqual(Vector3(0,0,0), v3b);
+		}		
+		
 		TEST_METHOD(Dot)
 		{
 			Vector3 v3a(13.5f, -48.23f, 862);
@@ -67,8 +67,8 @@ namespace MathLibraryTests
 			float dot3 = v3a.Dot(v3b);
 
 			Assert::AreEqual(-10468.9375f, dot3);
-
-
+			
+			
 			Vector3 v3c(0, 0, 0);
 			Vector3 v3d(5, 3.99f, -12);
 			dot3 = v3c.Dot(v3d);
@@ -114,13 +114,12 @@ namespace MathLibraryTests
 		TEST_METHOD(ScalarMulVectorLeft)
 		{
 			Vector3 v3a(13.5f, -48.23f, 862);
-			//Vector3 v3c = 0.256f * v3a; think this might be wrong
-			Vector3 v3c = v3a * 0.256f;
+			Vector3 v3c = 0.256f * v3a;
 
 			Assert::AreEqual(Vector3(3.45600008965f, -12.3468809128f, 220.672012329f), v3c);
 		}
 
-
+		
 		// TODO: implement tests for compound operators
 	};
 
